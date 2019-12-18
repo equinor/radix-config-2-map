@@ -3,7 +3,7 @@ package configmap
 import (
 	"io/ioutil"
 
-	"github.com/equinor/radix-clone-config/pkg/kubernetes"
+	"github.com/equinor/radix-config-2-map/pkg/kubernetes"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )

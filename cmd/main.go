@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/equinor/radix-clone-config/pkg/configmap"
+	"github.com/equinor/radix-config-2-map/pkg/configmap"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
