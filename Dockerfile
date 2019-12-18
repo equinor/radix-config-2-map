@@ -25,12 +25,12 @@ WORKDIR /go/src/github.com/equinor/radix-config-2-map/cmd
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-s -w" -a -installsuffix cgo -o ./rootfs/radix-config-2-map
-RUN adduser -D -g '' radix-config-2-map
+RUN adduser -D -g '' radix-config-to-map-runner
 
 # Run
 FROM scratch
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /go/src/github.com/equinor/radix-config-2-map/cmd/rootfs/radix-config-2-map /usr/local/bin/radix-config-2-map
-USER radix-config-2-map
+USER radix-config-to-map-runner
 ENTRYPOINT ["/usr/local/bin/radix-config-2-map"]
