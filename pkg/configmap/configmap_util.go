@@ -23,7 +23,7 @@ func CreateFromFile(namespace, name, file string) error {
 				Namespace: namespace,
 			},
 			Data: map[string]string{
-				file: string(content),
+				"content": string(content),
 			},
 		})
 

@@ -43,5 +43,8 @@ func root(cmd *cobra.Command, args []string) {
 	log.Infof("Config map: %s", configMapName)
 	log.Infof("File: %s", file)
 
-	configmap.CreateFromFile(namespace, configMapName, file)
+	err := configmap.CreateFromFile(namespace, configMapName, file)
+	if err != nil {
+		log.Fatal("Error creating config map from file: %v", err)
+	}
 }
