@@ -26,6 +26,5 @@ func GetKubernetesClient() kubernetes.Interface {
 		log.Fatalf("getClusterConfig k8s client: %v", err)
 	}
 
-	log.Printf("Successfully constructed k8s client to API server %v", config.Host)
 	return client
 }
