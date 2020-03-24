@@ -38,13 +38,12 @@ func main() {
 }
 
 func root(cmd *cobra.Command, args []string) {
-	log.Info("Running root command")
-	log.Infof("Namespace: %s", namespace)
-	log.Infof("Config map: %s", configMapName)
-	log.Infof("File: %s", file)
+	log.Infof("Copying radixconfig.yaml file (%s) into namespace (%s) and configmap (%s)", file, namespace, configMapName)
 
 	err := configmap.CreateFromFile(namespace, configMapName, file)
 	if err != nil {
-		log.Fatal("Error creating config map from file: %v", err)
+		log.Fatal("Error copying radixconfig.yaml and creating config map from file: %v", err)
+	} else {
+		log.Infof("Successfully found and copied radixconfig.yaml file")
 	}
 }
