@@ -12,14 +12,7 @@ import (
 
 // CreateFromFile Creates a configmap by name from file
 func CreateFromFile(namespace, name, file string) error {
-	var content []byte
-	var err error
-	for _, filename := range filenameCandidates(file) {
-		content, err = ioutil.ReadFile(filename)
-		if err == nil {
-			break
-		}
-	}
+	content, err := readConfigFile(file)
 	if err != nil {
 		return fmt.Errorf("Could not find or read config yaml file \"%s\"", file)
 	}
@@ -41,6 +34,18 @@ func CreateFromFile(namespace, name, file string) error {
 	}
 
 	return nil
+}
+
+func readConfigFile(filename string) ([]byte, error) {
+	var content []byte
+	var err error
+	for _, filename := range filenameCandidates(filename) {
+		content, err = ioutil.ReadFile(filename)
+		if err == nil {
+			break
+		}
+	}
+	return content, err
 }
 
 func filenameCandidates(filename string) []string {
