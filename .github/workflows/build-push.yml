@@ -26,4 +26,3 @@ jobs:
           password: ${{ secrets.PROD_REGISTRY_PASSWORD }}
       - run: |
           docker push radixprod.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest
-      - uses: azure/docker-login@v1
