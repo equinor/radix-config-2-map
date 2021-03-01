@@ -11,10 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          docker build . -t radixdev.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest -t radixprod.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest -t radixus.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest
+          docker build . -t radixdev.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest -t radixprod.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest
       - uses: azure/docker-login@v1
         with:
-          login-server: radixdev.azurecr.io
+          login-server: radixdev.azurecr.ra
           username: ${{ secrets.DEV_REGISTRY_USERNAME }}
           password: ${{ secrets.DEV_REGISTRY_PASSWORD }}
       - run: |
@@ -27,9 +27,3 @@ jobs:
       - run: |
           docker push radixprod.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest
       - uses: azure/docker-login@v1
-        with:
-          login-server: radixus.azurecr.io
-          username: ${{ secrets.PROD_REGISTRY_USERNAME }}
-          password: ${{ secrets.PROD_REGISTRY_PASSWORD }}
-      - run: |
-          docker push radixus.azurecr.io/radix-config-2-map:${GITHUB_REF##*/}-latest
