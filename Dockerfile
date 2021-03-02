@@ -25,7 +25,7 @@ WORKDIR /go/src/github.com/equinor/radix-config-2-map/cmd
 
 # Build
 RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-s -w" -a -installsuffix cgo -o ./rootfs/radix-config-2-map
-RUN adduser -D -g '' radix-config-to-map-runner
+RUN adduser -D -g '' -u 1000 radix-config-to-map-runner
 
 # Run
 FROM scratch
