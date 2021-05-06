@@ -1,6 +1,7 @@
 package configmap
 
 import (
+	"context"
 	"fmt"
 	"io/ioutil"
 	"strings"
@@ -19,6 +20,7 @@ func CreateFromFile(namespace, name, file string) error {
 
 	client := kubernetes.GetKubernetesClient()
 	_, err = client.CoreV1().ConfigMaps(namespace).Create(
+		context.Background(),
 		&corev1.ConfigMap{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:      name,
@@ -27,7 +29,8 @@ func CreateFromFile(namespace, name, file string) error {
 			Data: map[string]string{
 				"content": string(content),
 			},
-		})
+		},
+		metav1.CreateOptions{})
 
 	if err != nil {
 		return err
