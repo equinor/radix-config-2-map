@@ -32,5 +32,5 @@ FROM scratch
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /go/src/github.com/equinor/radix-config-2-map/cmd/rootfs/radix-config-2-map /usr/local/bin/radix-config-2-map
-USER radix-config-to-map-runner
+USER 1000
 ENTRYPOINT ["/usr/local/bin/radix-config-2-map"]
